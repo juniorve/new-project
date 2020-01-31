@@ -2,12 +2,10 @@ import { SugerenciasService } from './../../services/sugerencias.service';
 import { MatDialog } from '@angular/material';
 
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { MaestroService } from '../../services/maestro-service.service';
 import { Subject } from 'rxjs/Subject';
 import { takeUntil } from 'rxjs/operators';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { DialogComponent } from '../dialog/dialog.component';
 declare const swal: any;
 
@@ -16,7 +14,7 @@ declare const swal: any;
   selector: 'app-list-sugerencias',
   templateUrl: './list-sugerencias.component.html',
   styleUrls: ['./list-sugerencias.component.css'],
-  providers: [UserService, MaestroService,SugerenciasService]
+  providers: [UserService, MaestroService, SugerenciasService]
 })
 export class ListSugerenciasComponent implements OnInit, OnDestroy {
 
@@ -27,12 +25,9 @@ export class ListSugerenciasComponent implements OnInit, OnDestroy {
   private ngUnsubscribe: Subject<boolean> = new Subject();
   public sugerencias: any[] = [];
   constructor(
-    private dialog:MatDialog,
-    private fb: FormBuilder,
-    private _route: ActivatedRoute,
-    private _router: Router,
+    private dialog: MatDialog,
     private maestroService: MaestroService,
-    private sugerenciaService:SugerenciasService,
+    private sugerenciaService: SugerenciasService,
     private _userService: UserService) {
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
@@ -46,9 +41,9 @@ export class ListSugerenciasComponent implements OnInit, OnDestroy {
     this.ngUnsubscribe.unsubscribe();
   }
 
- 
 
-  onRowSelect(event){
+
+  onRowSelect(event) {
     this.openDialog();
   }
 
@@ -56,7 +51,7 @@ export class ListSugerenciasComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '1000px',
       // height: '700px',
-      data: { tipo: "modalShowSugerencia", sugerencia: this.selectedSugerencia }
+      data: { tipo: 'modalShowSugerencia', sugerencia: this.selectedSugerencia }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -64,13 +59,12 @@ export class ListSugerenciasComponent implements OnInit, OnDestroy {
   }
 
   getSugerencias() {
-    this.maestroService.busy = this.sugerenciaService.getSugerencias().pipe(takeUntil(this.ngUnsubscribe))
+    this.maestroService.busy = this.sugerenciaService.getSuggestions().pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(
         res => {
-          console.log(res);
-          this.sugerencias=[];
-          if(res.sugerencias){
-            this.sugerencias=res.sugerencias;
+          this.sugerencias = [];
+          if (res) {
+            this.sugerencias = res;
           }
         },
         error => {

@@ -17,20 +17,20 @@ export class SugerenciasService {
     this.url = GLOBAL.url;
   }
 
-  saveSugerencia(sugerencia: any): Observable<any> {
-    return this.apiService.post(this.url + 'sugerencias', sugerencia)
-      .map(res => res.json());
+  saveSuggestion(sugerencia: any): Observable<any> {
+    return this.apiService.post(this.url + 'suggestions', sugerencia)
+      .map(res => res);
   }
 
-  getSugerenciaById(sugerenciaId = null): Observable<any> {
-    return this.apiService.get(this.url + 'sugerencias/' + sugerenciaId)
-      .map(res => res.json());
+  getSuggestionById(suggestionId = null): Observable<any> {
+    return this.apiService.get(this.url + 'suggestions/' + suggestionId)
+      .map(res => res);
   }
 
 
-  getSugerencias(): Observable<any> {
-    return this.apiService.get(this.url + 'getsugerencias')
-      .map(res => res.json());
+  getSuggestions(): Observable<any> {
+    return this.apiService.get(this.url + 'suggestions')
+      .map(res => res);
   }
 
 }

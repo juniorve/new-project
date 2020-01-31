@@ -51,17 +51,21 @@
 				<div class="get_in_touch_contents">
 					<h1>¡Póngase en contacto con nosotros!</h1>
 					<p>Rellene el siguiente formulario para recibir una información gratuita y confidencial.</p>
-					<form [formGroup]="sugerenciasForm">
+					<form [formGroup]="suggestionForm">
 						<div>
-							<input formControlName="dni" class="form_input input_name input_ph"
-								type="text" placeholder="Dni" required="required">
-							<input formControlName="nombre" class="form_input input_name input_ph"
-								type="text" name="name" placeholder="Nombre" required="required">
+							<input formControlName="numberDocument" class="form_input input_name input_ph" type="text"
+								placeholder="N° documento" required="required">
+
+							<input formControlName="name" class="form_input input_name input_ph" type="text"
+								name="name" placeholder="Nombre" required="required">
+
 							<input formControlName="email" id="input_email" class="form_input input_email input_ph"
 								type="email" name="email" placeholder="Email" required="required">
-							<input formControlName="celular" class="form_input input_name input_ph"
-								type="text" name="celular" placeholder="Celular" required="required">
-							<textarea formControlName="descripcion" id="input_message" class="input_ph input_message"
+
+							<input formControlName="mobile" class="form_input input_name input_ph" type="text"
+								name="celular" placeholder="Celular" required="required">
+
+							<textarea formControlName="description" id="input_message" class="input_ph input_message"
 								name="message" placeholder="Por favor, escriba su sugerencia." rows="3" required
 								data-error="por favor, escriba su mensaje."></textarea>
 						</div>
@@ -75,10 +79,6 @@
 
 		</div>
 	</div>
-
-	<!-- Newsletter -->
-
-	<!-- Newsletter -->
 
 	<div class="newsletter">
 		<div class="container">
@@ -103,42 +103,6 @@
 		</div>
 	</div>
 
-	<!-- Footer -->
-
-	<footer class="footer">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6">
-					<div
-						class="footer_nav_container d-flex flex-sm-row flex-column align-items-center justify-content-lg-start justify-content-center text-center">
-						<ul class="footer_nav">
-							<li><a href="/principal">Blog</a></li>
-							<li><a href="/principal">FAQs</a></li>
-							<li><a href="contact.html">Contactanos</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-6">
-					<div
-						class="footer_social d-flex flex-row align-items-center justify-content-lg-end justify-content-center">
-						<ul>
-							<li><a href="/principal"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-							<li><a href="/principal"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-							<li><a href="/principal"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-							<li><a href="/principal"><i class="fa fa-skype" aria-hidden="true"></i></a></li>
-							<li><a href="/principal"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="footer_nav_container">
-						<div class="cr">©2019 todos los derechos reservados por Ychicawa </div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
+	<app-footer></app-footer>
 
 </div>

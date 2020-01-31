@@ -8,7 +8,7 @@
         <div></div>
       </div>
       <div class="sidebar-brand">
-        <a>IchikawaShop</a>
+        <a>fastParking</a>
       </div>
       <div class="sidebar-header">
         <div class="user-pic">
@@ -41,12 +41,6 @@
             <span>Parkings</span>
           </li> 
           <li class="" *ngIf="identity.role=='ROLE_ADMIN'">
-            <a class="res_add" [routerLink]="['/list-proveedor']">
-              <i class="fa fa-list" aria-hidden="true"></i>
-              <span>Listado de parkings</span>
-            </a>
-          </li>
-          <li class="" *ngIf="identity.role=='ROLE_ADMIN'">
             <a class="res_add" [routerLink]="['/new-parking']">
               <i class="fa fa-plus"></i>
               <span>Nuevo parking</span>
@@ -64,7 +58,7 @@
                             <span>Maps</span>
                         </a>
                     </li> -->
-                    <li class="header-menu" *ngIf="identity.role=='ROLE_ADMIN'">
+                <!--     <li class="header-menu" *ngIf="identity.role=='ROLE_ADMIN'">
                       <span>Productos</span>
                     </li>
                     <li class="res_add" >
@@ -84,29 +78,23 @@
                         <i class="fa fa-cog"></i>
                         <span>Administración</span>
                       </a>
-                    </li>
+                    </li> -->
                     <li class="header-menu">
                         <span>Resumen</span>
                       </li>
-                      <li class="res_add" *ngIf="identity.role=='ROLE_ADMIN'">
+                     <!--  <li class="res_add" *ngIf="identity.role=='ROLE_ADMIN'">
                         <a [routerLink]="['/ventas']">
                           <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                           <span>Ventas</span>
                         </a>
-                      </li>
+                      </li> -->
 
                       <li class="res_add" *ngIf="identity.role=='ROLE_USER'">
                           <a [routerLink]="['/compras']">
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                            <span>Compras realizadas</span>
+                            <span>Alquileres realizadas</span>
                           </a>
-                        </li>
-                     <!--  <li class="res_add" *ngIf="identity.role=='ROLE_ADMIN'">
-                        <a [routerLink]="['/ganancias']">
-                          <i class="fa fa-list"></i>
-                          <span>Ganancias</span>
-                        </a>
-                      </li> -->
+                        </li> 
                       <li class="res_add" *ngIf="identity.role=='ROLE_ADMIN'">
                         <a [routerLink]="['/list-sugerencias']">
                           <i class="fa fa-list"></i>
