@@ -31,33 +31,6 @@ export class LoginComponent implements OnInit {
     this.token = this._userService.getToken();
   }
 
-  /* 
-  getProductos()
-  {        
-        this._productoService.getTProductos().subscribe(
-            response =>{
-              console.log(response);
-              if(!response.productos){
-                }else{
-                    this.productos= response.productos;
-
-                    for(let item of this.productos){
-                      if(item.cantidad<=item.stock_minimo){
-                        console.log("entra1");
-                        swal("Atención","Tiene bajo stock del producto "+item.descripcion
-                        +" , stock actual "+item.cantidad +" unidades"
-                        ,"warning")
-                        console.log("entra");
-                      }
-                    }
-
-                 }  
-            },
-          error =>{
-          }
-     );
-    }
- */
   loginUser() {
     console.log(this.user);
 
@@ -69,7 +42,7 @@ export class LoginComponent implements OnInit {
         console.log(response.user);
 
         if (!this.identity._id) {
-          alert("El usuario no esta correctamente identificado");
+          alert('El usuario no esta correctamente identificado');
         }
         else {
           // crear elemento en el localstorage para tener al usuario en sesion
@@ -87,15 +60,6 @@ export class LoginComponent implements OnInit {
               else {
                 // crear elemento en el localstorage para tener al token disponible
                 localStorage.setItem('token', token);
-
-
-                //=========== BAJO STOCK
-                // this.getProductos();
-
-
-
-
-                //  this._router.navigate(['/mant-proveedor']);
                 this._router.navigate(['/']);
                 this.user = new User(null, '', '', '', '', '', '', '', '', '');
               }

@@ -39,7 +39,7 @@
         <ul>
           <li class="header-menu" *ngIf="identity.role=='ROLE_ADMIN'">
             <span>Parkings</span>
-          </li> 
+          </li>
           <li class="" *ngIf="identity.role=='ROLE_ADMIN'">
             <a class="res_add" [routerLink]="['/new-parking']">
               <i class="fa fa-plus"></i>
@@ -52,55 +52,21 @@
               <span>Mantenimiento</span>
             </a>
           </li>
-          <!-- <li class="">
-                        <a >
-                            <i class="fa fa-globe"></i>
-                            <span>Maps</span>
-                        </a>
-                    </li> -->
-                <!--     <li class="header-menu" *ngIf="identity.role=='ROLE_ADMIN'">
-                      <span>Productos</span>
-                    </li>
-                    <li class="res_add" >
-                      <a [routerLink]="['/list-producto']" *ngIf="identity.role=='ROLE_ADMIN'">
-                        <i class="fa fa-list"></i>
-                        <span>Lista Productos</span>
-                      </a>
-                    </li>
-                    <li class="res_add" *ngIf="identity.role=='ROLE_ADMIN'">
-                      <a [routerLink]="['/new-producto']">
-                        <i class="fa fa-plus"></i>
-                        <span>Nuevo Producto</span>
-                      </a>
-                    </li>
-                    <li class="res_add" *ngIf="identity.role=='ROLE_ADMIN'">
-                      <a [routerLink]="['/adm-producto']">
-                        <i class="fa fa-cog"></i>
-                        <span>Administración</span>
-                      </a>
-                    </li> -->
-                    <li class="header-menu">
-                        <span>Resumen</span>
-                      </li>
-                     <!--  <li class="res_add" *ngIf="identity.role=='ROLE_ADMIN'">
-                        <a [routerLink]="['/ventas']">
-                          <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                          <span>Ventas</span>
-                        </a>
-                      </li> -->
-
-                      <li class="res_add" *ngIf="identity.role=='ROLE_USER'">
-                          <a [routerLink]="['/compras']">
-                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                            <span>Alquileres realizadas</span>
-                          </a>
-                        </li> 
-                      <li class="res_add" *ngIf="identity.role=='ROLE_ADMIN'">
-                        <a [routerLink]="['/list-sugerencias']">
-                          <i class="fa fa-list"></i>
-                          <span>Quejas y sugerencias</span>
-                        </a>
-                      </li>
+          <li class="header-menu">
+            <span>Resumen</span>
+          </li>
+          <li class="res_add" *ngIf="identity.role=='ROLE_USER'">
+            <a [routerLink]="['/compras']">
+              <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+              <span>Alquileres realizadas</span>
+            </a>
+          </li>
+          <li class="res_add" *ngIf="identity.role=='ROLE_ADMIN'">
+            <a [routerLink]="['/list-sugerencias']">
+              <i class="fa fa-list"></i>
+              <span>Quejas y sugerencias</span>
+            </a>
+          </li>
           <li class="header-menu">
             <span>Cuenta</span>
           </li>
@@ -114,8 +80,7 @@
       </div>
     </div>
   </nav>
-
-
+  
   <main class="page-content">
     <app-menu></app-menu>
     <br> <br> <br> <br>

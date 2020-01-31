@@ -6,9 +6,7 @@ import { UserService } from 'src/app/services/user.service';
 import { MaestroService } from '../../services/maestro-service.service';
 import { Subject } from 'rxjs/Subject';
 import { takeUntil } from 'rxjs/operators';
-import { DialogComponent } from '../dialog/dialog.component';
-declare const swal: any;
-
+import { DialogSugerenciasComponent } from './dialog-sugerencias/dialog-sugerencias.component';
 
 @Component({
   selector: 'app-list-sugerencias',
@@ -41,17 +39,14 @@ export class ListSugerenciasComponent implements OnInit, OnDestroy {
     this.ngUnsubscribe.unsubscribe();
   }
 
-
-
   onRowSelect(event) {
     this.openDialog();
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(DialogComponent, {
-      width: '1000px',
-      // height: '700px',
-      data: { tipo: 'modalShowSugerencia', sugerencia: this.selectedSugerencia }
+    const dialogRef = this.dialog.open(DialogSugerenciasComponent, {
+      width: '700px',
+      data: { suggestion: this.selectedSugerencia }
     });
 
     dialogRef.afterClosed().subscribe(result => {
