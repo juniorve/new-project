@@ -74,91 +74,12 @@
   <br> <br><br><br><br> <br>
 
 
-  <div class="row">
-    <div class="col-lg-7">
-      <div class="single_product_pics">
-        <div class="row">
-          <div class="col-lg-3 thumbnails_col order-lg-1 order-2">
-            <div class="single_product_thumbnails">
-              <ul>
-                <li class="active"><img src="{{url+'get-img-producto/'+producto.imagen}}" alt=""
-                    data-image="assets/images/productos/arrocera1.jpg"></li>
-                <!-- <li><img src="{{url+'get-img-producto/'+producto.imagen}}" alt="" (click)="viewImage(url+'get-img-producto/'+producto.imagen)"
-                    data-image="url+'get-img-producto/'+producto.imagen"></li>
-                <li><img src="{{url+'get-img-producto/'+producto.imagen}}" alt=""
-                    data-image="url+'get-img-producto/'+producto.imagen"></li> -->
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-9 image_col order-lg-2 order-1">
-            <div class="single_product_image">
-              <!-- <div class="single_product_image_background"
-              [ngStyle]="{'background-image':'url('+url+'get-img-producto/'+producto.imagen+')'}"
-                ></div> -->
-                <div class="single_product_image_background"
-              [ngStyle]="{'background-image':'url('+url+'get-img-producto/'+producto.imagen+')'}"
-                ></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-5">
-      <div class="product_details">
-        <div class="product_details_title">
-          <h2 class="nameProd">{{producto.nombre}}</h2>
-          <p>{{producto.descripcion}}...</p>
-        </div>
-        <div class="free_delivery d-flex flex-row align-items-center justify-content-center">
-          <span class="ti-truck"></span><span>ENTREGA GRATIS</span>
-        </div>
-        <!-- <div class="original_price">S/.629.99</div> -->
-        <div class="product_price">S/.{{producto.precioVenta}}</div>
-        <ul class="star_rating">
-          <li><i class="fa fa-star" aria-hidden="true"></i></li>
-          <li><i class="fa fa-star" aria-hidden="true"></i></li>
-          <li><i class="fa fa-star" aria-hidden="true"></i></li>
-          <li><i class="fa fa-star" aria-hidden="true"></i></li>
-          <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-        </ul>
-        <!-- <div class="product_color">
-          <span>Seleccionar el color: </span>
-          <ul>
-            <li style="background: #e54e5d"></li>
-            <li style="background: #252525"></li>
-            <li style="background: #60b3f3"></li>
-          </ul>
-        </div> -->
-        <div class="quantity d-flex flex-column flex-sm-row align-items-sm-center">
-          <span>Cantidad:</span>
-          <div class="quantity_selector">
-            <span class="minus"><i class="fa fa-minus" aria-hidden="true"></i></span>
-            <span id="quantity_value">1</span>
-            <span class="plus"><i class="fa fa-plus" aria-hidden="true"></i></span>
-          </div>
-          <div class="red_button"><a class="addProd" (click)="addProducto(producto)">
-              agregar al carrito
-          </a></div>
-        </div>
-      </div>
-    </div>
-  </div>
+   <br>
 </div>
 
 
 <div class="tabs_section_container">
   <div class="container">
-    <div class="row">
-      <div class="col">
-        <div class="tabs_container">
-          <ul class="tabs d-flex flex-sm-row flex-column align-items-left align-items-md-center justify-content-center">
-            <li class="tab active" data-active-tab="tab_1"><span>Descripción</span></li>
-            <li class="tab" data-active-tab="tab_2"><span>Información Adicional</span></li>
-            <li class="tab" data-active-tab="tab_3"><span>Comentarios ({{comentarios.length}})</span></li>
-          </ul>
-        </div>
-      </div>
-    </div>
     <div class="row">
       <div class="col">
         <div id="tab_1" class="tab_container active">
@@ -196,6 +117,70 @@
               </div>
             </div>
           </div>
+
+          <div >
+            <div class="row">
+  
+              <div class="col-lg-6 reviews_col">
+                <div class="tab_title reviews_title">
+                  <h4>Comentarios (2)</h4>
+                </div>
+                <div class="user_review_container d-flex flex-column flex-sm-row" *ngFor="let comentario of comentarios">
+                  <div class="user">
+                    <div class="user_pic">
+                      <img class="user_pic" [src]="comentario.ruta" alt="">
+                    </div>
+                    <div class="user_rating">
+                      <ul class="star_rating">
+                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="review">
+                    <div class="review_date">{{comentario.fecha}}</div>
+                    <div class="user_name">{{comentario.name}}</div>
+                    <p>{{comentario.descripcion}}</p>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="col-lg-6 add_review_col">
+                <div class="add_review">
+                  <form id="review_form" action="post" [formGroup]="comentarioForm">
+                    <div>
+                      <h1>Agregar una opinión</h1>
+                      <input id="review_name" class="form_input input_name" type="text" name="name" placeholder="Nombre*"
+                        required="required" data-error="Name is required." formControlName="name">
+                      <input id="review_email" class="form_input input_email" type="email" name="email"
+                        formControlName="email" placeholder="Email*" required="required"
+                        data-error="Valid email is required.">
+                    </div>
+                    <div>
+                      <h1>Tu calificación:</h1>
+                      <ul class="user_star_rating">
+                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                      </ul>
+                      <textarea formControlName="descripcion" id="review_message" class="input_review" name="message"
+                        placeholder="Escribe tu opinión" rows="4" required
+                        data-error="Please, leave us a review."></textarea>
+                    </div>
+                    <div class="text-left text-sm-right">
+                      <button id="review_submit" type="submit" class="red_button review_submit_btn trans_300"
+                        (click)="addComentario()">Enviar</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div id="tab_2" class="tab_container">
@@ -214,92 +199,7 @@
           </div>
         </div>
 
-        <div id="tab_3" class="tab_container">
-          <div class="row">
-
-            <div class="col-lg-6 reviews_col">
-              <div class="tab_title reviews_title">
-                <h4>Comentarios (2)</h4>
-              </div>
-              <div class="user_review_container d-flex flex-column flex-sm-row" *ngFor="let comentario of comentarios">
-                <div class="user">
-                  <div class="user_pic">
-                    <img class="user_pic" [src]="comentario.ruta" alt="">
-                  </div>
-                  <div class="user_rating">
-                    <ul class="star_rating">
-                      <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                      <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                      <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                      <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                      <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="review">
-                  <div class="review_date">{{comentario.fecha}}</div>
-                  <div class="user_name">{{comentario.name}}</div>
-                  <p>{{comentario.descripcion}}</p>
-                </div>
-              </div>
-
-              <!--     <div class="user_review_container d-flex flex-column flex-sm-row">
-                <div class="user">
-                  <div class="user_pic">
-                    <img class="user_pic" src="assets/images/productos/foto2.jpg" alt="">
-                  </div>
-                  <div class="user_rating">
-                    <ul class="star_rating">
-                      <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                      <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                      <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                      <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                      <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="review">
-                  <div class="review_date">12 Mayo 2019</div>
-                  <div class="user_name">Andrea Sotomayor</div>
-                  <p>Decidi aprovechar la oferta y el hermoso diseño me enamoro, soy la envidia
-                    entre mis amigas.</p>
-                </div>
-              </div> -->
-            </div>
-
-            <div class="col-lg-6 add_review_col">
-              <div class="add_review">
-                <form id="review_form" action="post" [formGroup]="comentarioForm">
-                  <div>
-                    <h1>Agregar una opinión</h1>
-                    <input id="review_name" class="form_input input_name" type="text" name="name" placeholder="Nombre*"
-                      required="required" data-error="Name is required." formControlName="name">
-                    <input id="review_email" class="form_input input_email" type="email" name="email"
-                      formControlName="email" placeholder="Email*" required="required"
-                      data-error="Valid email is required.">
-                  </div>
-                  <div>
-                    <h1>Tu calificación:</h1>
-                    <ul class="user_star_rating">
-                      <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                      <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                      <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                      <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                      <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-                    </ul>
-                    <textarea formControlName="descripcion" id="review_message" class="input_review" name="message"
-                      placeholder="Escribe tu opinión" rows="4" required
-                      data-error="Please, leave us a review."></textarea>
-                  </div>
-                  <div class="text-left text-sm-right">
-                    <button id="review_submit" type="submit" class="red_button review_submit_btn trans_300"
-                      (click)="addComentario()">Enviar</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
+        
       </div>
     </div>
   </div>

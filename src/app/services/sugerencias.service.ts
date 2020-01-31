@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
+import { Injectable } from '@angular/core';
+import { Headers, RequestOptions } from '@angular/http';
+import 'rxjs/add/operator/map';
 import { GLOBAL } from './global';
 import { Producto } from './../models/producto';
+import { ApiService } from './api.service';
 
 
 @Injectable()
@@ -12,36 +13,23 @@ export class SugerenciasService {
 
   public url: String;
 
-  constructor(private _http: Http) {
+  constructor(private apiService: ApiService) {
     this.url = GLOBAL.url;
   }
 
-  saveSugerencia(producto: Producto) {
-
-    let json = JSON.stringify(producto);
-    let params = json;
-
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-
-    return this._http.post(this.url + 'sugerencias', params, { headers: headers })
+  saveSugerencia(sugerencia: any): Observable<any> {
+    return this.apiService.post(this.url + 'sugerencias', sugerencia)
       .map(res => res.json());
   }
 
-  getSugerenciaById(sugerenciaId = null) {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
-
-    return this._http.get(this.url + 'sugerencias/' + sugerenciaId, options)
+  getSugerenciaById(sugerenciaId = null): Observable<any> {
+    return this.apiService.get(this.url + 'sugerencias/' + sugerenciaId)
       .map(res => res.json());
   }
 
 
-  getSugerencias() {
-
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
-
-    return this._http.get(this.url + 'getsugerencias', options)
+  getSugerencias(): Observable<any> {
+    return this.apiService.get(this.url + 'getsugerencias')
       .map(res => res.json());
   }
 

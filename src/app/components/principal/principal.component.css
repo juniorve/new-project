@@ -9,7 +9,13 @@
     overflow-y: auto !important;
 }
 
+.now{
+	padding: 10px;
+}
 
+.main_slider_content h6, .main_slider_content h1{
+	color: white !important;
+}
 
 
 /* STYLOS ANTERIORES DEL CARRITO */

@@ -53,7 +53,6 @@ export class MapsComponent implements OnInit, OnChanges {
     // this.wrapper = wrapper;
   }
   ngOnInit() {
-    this.multipleMaps();
   }
 
   ngOnChanges() {
@@ -64,42 +63,6 @@ export class MapsComponent implements OnInit, OnChanges {
         zoom: 16
       };
     }
-  }
-
-  multipleMaps() {
-    if (this.multiple) {
-      for (const location of this.locations) {
-        if (location.lat && location.lng) {
-          this.location.lat = location.lat;
-          this.location.lng = location.lng;
-          break;
-        }
-      }
-    }
-  }
- 
-  updatepointGeo(address): Promise<any> {
-    this.geocoder = new google.maps.Geocoder();
-    return new Promise((resolve, reject) => {
-      if (this.geocoder) {
-        this.geocoder.geocode(
-          { address: address, componentRestrictions: { country: 'PE' } },
-          (results, status) => {
-            if (status === 'OK') {
-              if (results[0].geometry.location) {
-                resolve(results);
-              } else {
-                reject('error');
-              }
-            } else {
-              reject('error');
-            }
-          }
-        );
-      } else {
-        reject('error');
-      }
-    });
   }
 
   markerDragEnd(data) {

@@ -38,7 +38,6 @@ export class DialogMapParkingComponent implements OnInit, OnDestroy {
   }
 
   asignLocation(location) {
-    console.log(location);
     if (location.address) {
       this.address = location.address;
     } else {
@@ -48,6 +47,10 @@ export class DialogMapParkingComponent implements OnInit, OnDestroy {
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  locationMarker(event){
+    // console.log(event);
   }
 
 }

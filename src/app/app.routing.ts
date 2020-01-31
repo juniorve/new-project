@@ -1,3 +1,4 @@
+import { SearchParkingComponent } from './components/search-parking/search-parking.component';
 import { ListProductoComponent } from './components/parking/list-producto/list-producto.component';
 import { EditParkingComponent } from './components/parking/edit-parking/edit-parking.component';
 import { NewParkingComponent } from './components/parking/new-parking/new-parking.component';
@@ -52,6 +53,7 @@ const appRoutes: Routes = [
   { path: 'principal', component: PrincipalComponent },
   { path: 'show-producto/:id', component: ShowProductoComponent },
   { path: 'carrito', component: CarritoComponent },
+  { path: 'search-parking', component: SearchParkingComponent },
   { path: 'sugerencias', component: SugerenciasComponent },
   { path: '', redirectTo: '/principal', pathMatch: 'full' }
 ];

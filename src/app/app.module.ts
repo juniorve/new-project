@@ -1,3 +1,4 @@
+import { VehicleService } from './services/vehicle.service';
 import { DialogMapParkingComponent } from './components/parking/dialog-map-parking/dialog-map-parking.component';
 import { SharedModule } from './shared/shared.module';
 import { UserService } from './services/user.service';
@@ -50,6 +51,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ApiService } from './services/api.service';
 import { DialogParkingComponent } from './components/parking/dialog-parking/dialog-parking.component';
 import { AgmCoreModule } from '@agm/core';
+import { SearchParkingComponent } from './components/search-parking/search-parking.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -82,7 +84,8 @@ import { AgmCoreModule } from '@agm/core';
     DialogComponent,
     ListSugerenciasComponent,
     ComprasComponent,
-    DialogMapParkingComponent
+    DialogMapParkingComponent,
+    SearchParkingComponent
   ],
   imports: [
     SharedModule,
@@ -108,6 +111,7 @@ import { AgmCoreModule } from '@agm/core';
     ParkingService,
     UserService,
     ApiService,
+    VehicleService,
     { provide: MAT_DATE_LOCALE, useValue: 'es-Pe' },
     { provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true }
   ],
