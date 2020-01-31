@@ -1,3 +1,4 @@
+import { DialogMapParkingComponent } from './../dialog-map-parking/dialog-map-parking.component';
 import { Parking } from './../../../models/parking.model';
 import { Component, OnInit, Inject, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material';
@@ -24,6 +25,7 @@ export class DialogParkingComponent implements OnInit, OnDestroy {
     private parkingService: ParkingService,
     public dialogRef: MatDialogRef<DialogParkingComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
+    private dialog: MatDialog,
     public maestroService: MaestroService
   ) {
   }
@@ -57,6 +59,13 @@ export class DialogParkingComponent implements OnInit, OnDestroy {
         error => {
         }
       );
+  }
+
+  openDialogMap() {
+    console.log(this.parking);
+    this.dialog.open(DialogMapParkingComponent, {
+      data: { pointGeolocation: this.parking}, width: '500px'
+    });
   }
 }
 

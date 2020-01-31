@@ -1,3 +1,5 @@
+import { DialogMapParkingComponent } from './components/parking/dialog-map-parking/dialog-map-parking.component';
+import { SharedModule } from './shared/shared.module';
 import { UserService } from './services/user.service';
 import { EditParkingComponent } from './components/parking/edit-parking/edit-parking.component';
 import { ListProductoComponent } from './components/parking/list-producto/list-producto.component';
@@ -47,6 +49,7 @@ import { HttpTokenInterceptor } from './components/interceptors/http-token.inter
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ApiService } from './services/api.service';
 import { DialogParkingComponent } from './components/parking/dialog-parking/dialog-parking.component';
+import { AgmCoreModule } from '@agm/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,13 +61,13 @@ import { DialogParkingComponent } from './components/parking/dialog-parking/dial
     RegisterComponent,
     CategoriasComponent,
     MenuComponent,
-    //proveedores
+    // proveedores
     EditProveedorComponent,
     MantProveedorComponent,
     NewProveedorComponent,
     ListProveedorComponent,
     ViewProveedorComponent,
-    //parking
+    // parking
     AdmParkingComponent,
     NewParkingComponent,
     ListProductoComponent,
@@ -78,25 +81,28 @@ import { DialogParkingComponent } from './components/parking/dialog-parking/dial
     VentasComponent,
     DialogComponent,
     ListSugerenciasComponent,
-    ComprasComponent
+    ComprasComponent,
+    DialogMapParkingComponent
   ],
   imports: [
+    SharedModule,
     FormsModule,
     MaterialModule,
     DataTableModule,
     DropdownModule,
     HttpClientModule,
-    // HttpModule,
     BrowserAnimationsModule,
-    // BrowserModule,
     routing,
     OverlayModule, ReactiveFormsModule,
-
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDrxCURGOr6ViOwz8NHaiqPnpnWpyXaxD0',
+      libraries: ['drawing']
+    }),
     // BUSY
     NgBusyModule
     // ProveedorModule
   ],
-  entryComponents: [DialogComponent, DialogParkingComponent],
+  entryComponents: [DialogComponent, DialogParkingComponent, DialogMapParkingComponent],
   providers: [appRoutingProviders,
     MaestroService,
     ParkingService,

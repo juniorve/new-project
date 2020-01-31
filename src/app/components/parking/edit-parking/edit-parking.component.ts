@@ -1,97 +1,78 @@
-import { UserService } from 'src/app/services/user.service';
-import { Producto } from './../../../models/producto';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ParkingService } from './../../../services/parking.service';
+import { Parking } from './../../../models/parking.model';
+import { Component, OnInit } from '@angular/core';
 import { GLOBAL } from '../../../services/global';
-import { MatDialog } from '@angular/material'
-import { Router, ActivatedRoute, Params } from '@angular/router';
-import { MaestroService } from '../../../services/maestro-service.service';
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs/Subject';
-import { ParkingService } from 'src/app/services/parking.service';
-declare const swal: any;
+import { UserService } from '../../../services/user.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
+import * as _swal from 'sweetalert';
+import { SweetAlert } from 'sweetalert/typings/core';
+import { Router } from '@angular/router';
+const swal: SweetAlert = _swal as any;
 
 @Component({
   selector: 'app-edit-parking',
   templateUrl: './edit-parking.component.html',
   styleUrls: ['./edit-parking.component.css'],
-  providers: [UserService]
-})
-export class EditParkingComponent implements OnInit, OnDestroy {
+  providers: [ParkingService]
 
+})
+export class EditParkingComponent implements OnInit {
+  availableList = [
+    { text: 'Si', value: true },
+    { name: 'No', value: false }
+  ];
   public identity;
-  private ngUnsubscribe: Subject<boolean> = new Subject();
+  public title: String = 'Registro de nuevo parking';
   public token;
   public url;
-  public band_editar: boolean;
-  public productos: Producto[] = [];
-  public _idEvento: String;
-  public cantidad: any = 0;
+  public parking: Parking;
+  public formParking: FormGroup;
+
   constructor(
-    private parkingService: ParkingService, private _route: ActivatedRoute, private maestroService: MaestroService,
-    private _router: Router,
-    private _userService: UserService) {
+    private router: Router,
+    private fb: FormBuilder,
+    private parkingService: ParkingService,
+    private userService: UserService) {
     this.url = GLOBAL.url;
-    this.identity = this._userService.getIdentity();
-    this.token = this._userService.getToken();
+    this.identity = this.userService.getIdentity();
+    this.token = this.userService.getToken();
+    this.newForm();
   }
 
   ngOnInit() {
-    this.getparkingByUser();
-  }
-  ngOnDestroy() {
-    this.ngUnsubscribe.next(true);
-    this.ngUnsubscribe.unsubscribe();
   }
 
+  newForm() {
+    this.formParking = this.fb.group({
+      name: ['', Validators.required],
+      address: ['', Validators.required],
+      accesibility: [true, Validators.required],
+      latitude: [0, Validators.required],
+      longitude: [0, Validators.required],
+      places: [0, Validators.required],
+      score: [0]
+    });
+  }
 
-  getparkingByUser() {
-    return;
-    /* this.maestroService.busy = this.parkingService.getProductos(this.token, this.identity._id).pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe(
-        response => {
-          console.log(response);
-          if (!response.productos) {
-          } else {
-            this.productos = response.productos;
-            this.cantidad = this.productos.length;
-          }
-        },
-        error => {
+  newParking() {
+    console.log(this.formParking.value);
+    this.parkingService.saveParking(this.token, this.formParking.value).subscribe(
+      response => {
+        if (!response) {
+          swal('Error', 'el parking no se guardo correctamente', 'warning');
+        } else {
+          swal('Parking registrado', 'Datos guardados correctamente', 'success').then(reponse => {
+            this.router.navigate(['/mant-parking']);
+          });
         }
-      ); */
-  }
-
-  editProducto(idProducto: String) {
-    this._router.navigate(['/edit-producto/' + idProducto]);
-  }
-
-
-  deleteParking(idParking: any) {
-
-    swal({
-      title: 'Eliminar producto', text: '¿Usted esta seguro de eliminar el producto?', icon: 'info',
-      buttons: ['Cancelar', 'Confirmar']
-    })
-      .then((deleteProd) => {
-        if (deleteProd) {
-          this.maestroService.busy = this.parkingService.deleteParking(this.token, idParking).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
-            response => {
-              if (!response.producto) {
-                swal('Error', 'El producto no se elimino correctamente', 'warning');
-              } else {
-                swal('Producto eliminado', 'El producto se elimino correctamente', 'success')
-                  .then((deleteProd) => {
-                    if (deleteProd) {
-                      this.getparkingByUser();
-                    }
-                  });
-              }
-            },
-            error => {
-            }
-          );
+      },
+      error => {
+        const errorMessage = <any>error;
+        if (errorMessage != null) {
+          console.log(error);
         }
-      });
+      }
+    );
   }
 }
