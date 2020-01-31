@@ -74,13 +74,8 @@ export class ComentarioService {
     let headers = new Headers({ 'Content-Type': 'application/json', 'Authorization': token });
     let options = new RequestOptions({ headers: headers });
 
-  /*   if (usuarioId == null) {
-      return this._http.get(this.url + 'comentarios', options)
-        .map(res => res.json());
-    } else { */
       return this._http.get(this.url + 'comentariosUser/' + usuarioId, options)
         .map(res => res.json());
-    // }
   }
 
 

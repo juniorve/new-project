@@ -20,7 +20,6 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { RegisterComponent } from './components/register/register.component';
 import { PrincipalComponent } from './components/principal/principal.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
-import { ShowProductoComponent } from './components/show-producto/show-producto.component';
 import { NgBusyModule } from 'ng-busy';
 import { SugerenciasComponent } from './components/sugerencias/sugerencias.component';
 import { MAT_DATE_LOCALE } from '@angular/material';
@@ -28,13 +27,15 @@ import { DataTableModule } from 'primeng/datatable';
 import { DropdownModule } from 'primeng/primeng';
 import { ListSugerenciasComponent } from './components/list-sugerencias/list-sugerencias.component';
 import { ParkingService } from './services/parking.service';
-import { HttpTokenInterceptor } from './components/interceptors/http-token.interceptor';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ApiService } from './services/api.service';
 import { DialogParkingComponent } from './components/parking/dialog-parking/dialog-parking.component';
 import { AgmCoreModule } from '@agm/core';
 import { SearchParkingComponent } from './components/search-parking/search-parking.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { HttpTokenInterceptor } from './interceptors/http-token.interceptor';
+import { DialogSugerenciasComponent } from './components/list-sugerencias/dialog-sugerencias/dialog-sugerencias.component';
+import { BenefitComponent } from './components/benefit/benefit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,12 +49,13 @@ import { FooterComponent } from './components/footer/footer.component';
     NewParkingComponent,
     EditParkingComponent,
     ContactoComponent,
-    ShowProductoComponent,
     SugerenciasComponent,
     ListSugerenciasComponent,
     DialogMapParkingComponent,
     SearchParkingComponent,
-    FooterComponent
+    FooterComponent,
+    DialogSugerenciasComponent,
+    BenefitComponent
   ],
   imports: [
     SharedModule,
@@ -73,7 +75,7 @@ import { FooterComponent } from './components/footer/footer.component';
     NgBusyModule
     // ProveedorModule
   ],
-  entryComponents: [DialogParkingComponent, DialogMapParkingComponent],
+  entryComponents: [DialogParkingComponent, DialogMapParkingComponent, DialogSugerenciasComponent],
   providers: [appRoutingProviders,
     MaestroService,
     ParkingService,

@@ -1,9 +1,7 @@
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
-import { Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { GLOBAL } from './global';
-import { Producto } from './../models/producto';
 import { ApiService } from './api.service';
 
 

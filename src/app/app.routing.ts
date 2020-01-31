@@ -3,10 +3,8 @@ import { EditParkingComponent } from './components/parking/edit-parking/edit-par
 import { NewParkingComponent } from './components/parking/new-parking/new-parking.component';
 import { AdmParkingComponent } from './components/parking/adm-parking/adm-parking.component';
 import { ListSugerenciasComponent } from './components/list-sugerencias/list-sugerencias.component';
-import { ShowProductoComponent } from './components/show-producto/show-producto.component';
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 import { LoginComponent } from './components/login/login.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -27,7 +25,6 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'principal', component: PrincipalComponent },
-  { path: 'show-producto/:id', component: ShowProductoComponent },
   { path: 'search-parking', component: SearchParkingComponent },
   { path: 'sugerencias', component: SugerenciasComponent },
   { path: '', redirectTo: '/principal', pathMatch: 'full' }
